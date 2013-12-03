@@ -1,0 +1,21 @@
+<?php
+
+# mysql connection information
+$db_host = '127.0.0.1';
+$db_user = 'dbuser';
+$db_passwd = 'dbpasswd';
+$db_database = 'database';
+
+//defaults:
+// UPDATE THIS - jcc:
+// this is the end date that you're configuring here..
+// make sure $ws_day is a Saturday
+//
+// This is a bad hack to work around different variable names
+// in different files. If someone feels like fixing it, go for
+// it.
+// - jmatth
+$year = $ws_year = YYYY;
+$day = $ws_day = DD;
+$month = $ws_month = MM;
+?>

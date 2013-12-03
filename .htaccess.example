@@ -1,0 +1,15 @@
+
+Order Allow,Deny
+Allow from all
+
+AuthType Basic
+AuthName "OSS Payroll"
+AuthBasicProvider ldap
+
+AuthLDAPUrl "ldap uri" TLS
+
+AuthzLDAPAuthoritative off
+
+Require user list of authorized users
+
+require group list of authorized groups
