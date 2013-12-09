@@ -19,10 +19,9 @@
 -- Table structure for table `empinfo`
 --
 
-DROP TABLE IF EXISTS `empinfo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `empinfo` (
+CREATE TABLE IF NOT EXISTS `empinfo` (
   `username` varchar(10) DEFAULT NULL,
   `fullname` varchar(20) DEFAULT NULL,
   `social` varchar(11) DEFAULT NULL,
@@ -36,10 +35,9 @@ CREATE TABLE `empinfo` (
 -- Table structure for table `payrollinfo`
 --
 
-DROP TABLE IF EXISTS `payrollinfo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `payrollinfo` (
+CREATE TABLE IF NOT EXISTS `payrollinfo` (
   `username` varchar(20) NOT NULL,
   `date` date NOT NULL DEFAULT '0000-00-00',
   `starttime` time NOT NULL DEFAULT '00:00:00',
