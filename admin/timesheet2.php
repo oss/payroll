@@ -59,7 +59,6 @@ ImageString($id, 4, 710, 135, $payrate, $black);
 //DEPT OR DIVISION
 ImageString($id, 4, 656, 96, "NBCS", $black);
 
-
 //WEEK ONE
 $week1total = 0;
 for ($i=0; $i<7; $i++){

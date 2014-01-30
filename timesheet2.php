@@ -57,7 +57,8 @@ ImageString($id, 4, 710, 135, $payrate, $black);
 
 
 //DEPT OR DIVISION
-ImageString($id, 4, 656, 96, "NBCS", $black);
+//ImageString($id, 4, 656, 96, "NBCS", $black);
+ImageString($id, 4, 856,96, "NBCS", $black);
 
 
 //WEEK ONE
