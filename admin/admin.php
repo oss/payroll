@@ -331,7 +331,7 @@ echo "</div>";
 // following the tradition this fustercluck of a file, the PHP mysteriously ends here...
 ?>
 
-<!-- ...and mysteriously turns into html and javascript... -->
+<!-- ...in its place, we have html and javascript... -->
 <script language="Javascript">
 function toggle(source) {
 
@@ -342,7 +342,7 @@ function toggle(source) {
 
 </script>
 
-<!-- ...before turning back into PHP again, like a Phoenix rising from the ashes -->
+<!-- ...and now we're back into PHP again, like a Phoenix rising from the ashes -->
 <?
 
 // dynamically create a checkbox based on available users
@@ -359,11 +359,7 @@ foreach($allUsers as $nextUser)
 echo "<input id='print' type='submit' value=\"Print Checked\" class='button'\"/></form></div> \n";
 echo "</form><br>";
 
-// 'print selected' button
 echo "<div style=\"\">";
-echo "<form action=\"master-timesheet.php\" method=\"post\">";
-echo "<input type='hidden' name='startdate' value=\"" . $startdate_in . "\" />";
-echo "<input type='hidden' name='username' value=\"". $employee . "\" id='username' />";
 echo '</div>';
 
 // end container
@@ -385,3 +381,4 @@ else echo "&nbsp;";
 include("footer.inc");
 
 ?>
+
