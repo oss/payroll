@@ -621,7 +621,7 @@ h2{
 .adminCheckboxInner {
 
 	margin: auto;
-	width: 100px;
+	width: 110px;
 	border-collapse: collapse;
 }
 
@@ -633,7 +633,7 @@ h2{
 	margin-bottom: 10px;
 	background: #e4f2ff;
 	margin: 10px;
-	width: 100px;
+	width: 120px;
 	border-collapse: collapse;
 	float: left;
 	text-align: left;
@@ -646,11 +646,6 @@ h2{
 	-webkit-border-top-left-radius: 10px;
 	-webkit-border-bottom-left-radius: 10px;
 	-webkit-border-bottom-right-radius: 10px;
-/*	text-align: left;
-	float: right;
-	margin: auto;
-	margin-top
-*/
 }
 
 
