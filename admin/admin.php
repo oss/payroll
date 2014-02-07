@@ -51,13 +51,11 @@ while ($row = mysql_fetch_array($citizensResult)) {
 
 	// this is for printing the timeshseet for all users
 	$allUsers[] = $row["username"];
-
+	
 	echo "<option value=\"" . $row["username"] . "\"";
 	if($row["username"] == $username) echo "SELECTED";
 	echo ">" . $row["username"] . " \n";
 }
-
-
 
 echo "</select><input name='startdate' value=\"" . $startdate_SQL . "\" type=hidden></form></td></tr></table></div>";
 mysql_free_result($citizensResult);
@@ -294,6 +292,7 @@ for ($i=7; $i<14; $i++){
 	echo "<td id='total' align=center><b>" . $ttempprint . "</b></td>";
 	$week2total += $ttemp;
 }
+
 $week2total = $week2total-($daysover5*0.5);
 
 echo "<td id='total' align=center><b>" . $week2total . "</b></td>";
@@ -327,16 +326,31 @@ echo "<input type='hidden' name='startdate' value=\"" . $startdate_in . "\" />";
 echo "<input type='hidden' name='username' value=\"". $employee . "\" id='username' />";
 echo "<input id='print' type='submit' value=\"Printable\" class='button'\"/></form></div> \n";
 
-// this is the part where i cease to know what i'm doing
+echo "</div>";
+
+// dynamically create a checkbox based on available users
+echo '<div class="adminCheckboxOuter">';
+echo '<form class="adminCheckboxInner" action="">';
+echo "<input type='checkbox' onClick='toggle(this)'/>Check All<br/>";
+
+foreach($allUsers as $nextUser)
+{
+	if ($nextUser !== "")
+		echo '<input class="checkMe" type="checkbox" name='.$nextUser.'value="checked">'.$nextUser.'<br>';
+	
+}
+echo "</form><br>";
+
+// 'print selected' button
 echo "<div style=\"\">";
 echo "<form action=\"master-timesheet.php\" method=\"post\">";
 echo "<input type='hidden' name='startdate' value=\"" . $startdate_in . "\" />";
 echo "<input type='hidden' name='username' value=\"". $employee . "\" id='username' />";
-echo "<input id='print' type='submit' value=\"Print All\" class='button'\"/></form></div> \n";
+echo "<input id='print' type='submit' value=\"Print Selected\" class='button'\"/></form></div> \n";
+echo '</div>';
 
 // end container
-echo "<!-- container--></div> </div> \n";
-
+echo "<!-- container--></div>\n";
 
 if ($saveok) echo "<div id='success'>Your hours have been sucessfully recorded.</div>";
 else echo "&nbsp;";
