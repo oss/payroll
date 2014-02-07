@@ -328,6 +328,23 @@ echo "<input id='print' type='submit' value=\"Printable\" class='button'\"/></fo
 
 echo "</div>";
 
+// following the tradition this fustercluck of a file, the PHP mysteriously ends here...
+?>
+
+<!-- ...and mysteriously turns into html and javascript... -->
+<script language="Javascript">
+function toggle(source) {
+
+	checkboxes = document.getElementsByClassName('checkMe');
+	for(var i=0; i < checkboxes.length; ++i)
+		checkboxes[i].checked = source.checked;
+}
+
+</script>
+
+<!-- ...before turning back into PHP again, like a Phoenix rising from the ashes -->
+<?
+
 // dynamically create a checkbox based on available users
 echo '<div class="adminCheckboxOuter">';
 echo '<form class="adminCheckboxInner" action="">';
@@ -346,7 +363,7 @@ echo "<div style=\"\">";
 echo "<form action=\"master-timesheet.php\" method=\"post\">";
 echo "<input type='hidden' name='startdate' value=\"" . $startdate_in . "\" />";
 echo "<input type='hidden' name='username' value=\"". $employee . "\" id='username' />";
-echo "<input id='print' type='submit' value=\"Print Selected\" class='button'\"/></form></div> \n";
+echo "<input id='print' type='submit' value=\"Print Checked\" class='button'\"/></form></div> \n";
 echo '</div>';
 
 // end container
