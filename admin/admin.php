@@ -347,15 +347,16 @@ function toggle(source) {
 
 // dynamically create a checkbox based on available users
 echo '<div class="adminCheckboxOuter">';
-echo '<form class="adminCheckboxInner" action="">';
+echo "<form class=\"adminCheckboxInner\" method=\"post\" action=\"master-timesheet.php\">";
 echo "<input type='checkbox' onClick='toggle(this)'/>Check All<br/>";
 
 foreach($allUsers as $nextUser)
 {
 	if ($nextUser !== "")
-		echo '<input class="checkMe" type="checkbox" name='.$nextUser.'value="checked">'.$nextUser.'<br>';
+		echo '<input class="checkMe" type="checkbox" name="'.$nextUser.'">'.$nextUser.'<br>';
 	
 }
+echo "<input id='print' type='submit' value=\"Print Checked\" class='button'\"/></form></div> \n";
 echo "</form><br>";
 
 // 'print selected' button
@@ -363,7 +364,6 @@ echo "<div style=\"\">";
 echo "<form action=\"master-timesheet.php\" method=\"post\">";
 echo "<input type='hidden' name='startdate' value=\"" . $startdate_in . "\" />";
 echo "<input type='hidden' name='username' value=\"". $employee . "\" id='username' />";
-echo "<input id='print' type='submit' value=\"Print Checked\" class='button'\"/></form></div> \n";
 echo '</div>';
 
 // end container
