@@ -16,7 +16,6 @@ echo "<span id='name'>" . mysql_result($result,$i,"fullname") . "</span><br />";
 echo "<span id='empyTitle'>" . mysql_result($result,$i,"descduty") . "</span>";
 echo "</div>";
 
-
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 // Do this if you are coming from view.php
@@ -46,11 +45,24 @@ if (date("w", $startdatetext) != 6) {
 	exit(1);
 }
 
-// Prep for query
+// Prep for queries
 $startdate = date("Y-m-d", $startdatetext);
 $enddate = date("Y-m-d", $enddatetext);
 $copystartdate = date("Y-m-d", $copystartdatetext);
 $copyenddate = date("Y-m-d", $copyenddatetext);
+
+//  get completion status from database
+$querytext = "SELECT iscomplete from payrollinfo WHERE `username` ='".$username."' AND `date` ='".$startdate."'";
+$result = mysql_query($querytext,$db) or die(mysql_error());
+
+$isCompleteRow = mysql_fetch_assoc($result);
+/*
+// if hours are completed for the week, then check the checkbox
+if ($isCompleteRow['iscomplete'] == 1)
+{
+	echo "";	
+}
+*/
 
 // if copydate calculate copystartdate/copyenddate for SELECT
 $querytext = "SELECT * from `payrollinfo` WHERE `username` = '" . $username . "' AND `date` >= '" . $startdate . "' AND `date` <= '" . $enddate . "'";
@@ -91,12 +103,14 @@ if($copyweekbegins) {
 
 $starttimes[0]=0;
 $endtimes[0]=0;
+
 while ($data = mysql_fetch_array ($result)) {
 // if copydate $copydata = mysql_fetch_array
 	if($copyweekbegins) {$copydata = mysql_fetch_array($copyresult);}
 	
 	$daystamp = strtotime($data['date'] . " 00:00:00");
 
+	
 // if (copydate) { $startstamp = strtotime($data['date'] . " " . date($copydata['starttime'])); }
 	if($copyweekbegins) {
 		$startstamp = strtotime($data['date'] . " " . $copydata['starttime']);
@@ -207,6 +221,15 @@ return $output;
 
 <html>
 	<head>
+		<script LANGUAGE='JAVASCRIPT'>
+			function checkCompleted() {
+				if ("<?php echo $isCompleteRow['iscomplete']?>" == 1)
+				{
+					var checkMe = document.getElementById("pleaseCheckMe");
+					checkMe.setAttribute('checked', true);
+				}
+			}
+		</script>
 		<script LANGUAGE="JAVASCRIPT">
 			function reCalcHours(date) {
 			
@@ -254,7 +277,7 @@ return $output;
 			    } else {
 			      total2  += diffHours;
 			    }
-			  } else {
+} else {
 			    hours[HOURS][i].value = 0;
 			  }
 			}
@@ -264,15 +287,17 @@ return $output;
 			document.hours.hourstotal1.value = total1;
 			document.hours.hourstotal2.value = total2;
 			document.hours.hourstotal.value = grandtotal;
+
 			}
 		</script>
 	</head>
-	<body>
+	<body onload="checkCompleted()">
 	<div id="backButton"><a href='view.php'><img src='images/back.png' /></a></div>
 		<div id="payPeriodEndDate">
 			<b>Pay Period</b>: <?php echo date("m-d-Y", mktime($hour, $minute, $second, $month, $day, $year)); ?> to <?php echo date("m-d-Y", mktime ($hour,$minute,$second,$month,$day+13,$year)) ?>
 		</div>
 		<div id="entry_error" style="display:none;"></div>
+
 		<form name="hours" action="save.php" method="post">
 			<input type=hidden name="startdate" value="<?php echo $_POST["startdate"] ?>">
 			<div id="timeSelectorGrid">
@@ -385,6 +410,10 @@ return $output;
 					</tr>
 					<tr>
 						<td class='time' colspan=9 align=right>
+							<span class="datButtonTho">Workweek Complete: </span>
+							<form class="datCheckBoxTho" method="post" action="save.php">
+							<input type=checkbox name="complete" id="pleaseCheckMe">
+							</form>
 							<input type=submit value="Save" class="goodbutton">
 							<input type=reset value="Reset" class="badbutton">
 						</td>

@@ -44,7 +44,7 @@ echo "<select id='employeename' name=employee onchange=\"selEmp.submit()\">";
 
 $citizensResult = mysql_query("select username from payrollinfo group by username",$db) or die(mysql_error());
 
-// this is for printing the timesheet for all users
+// this is used for generating a list of all users to be fed into the checkbox. nomnomnom.
 $allUsers = array();
 
 while ($row = mysql_fetch_array($citizensResult)) {
@@ -56,9 +56,21 @@ while ($row = mysql_fetch_array($citizensResult)) {
 	if($row["username"] == $username) echo "SELECTED";
 	echo ">" . $row["username"] . " \n";
 }
+$slackers = array();
+
+
+$slackQuery = "SELECT * FROM `payrollinfo` WHERE `iscomplete`=0 AND `date`='".$startdate_SQL."'";
+$slackResult = mysql_query($slackQuery, $db);
+
+while ($row = mysql_fetch_assoc($slackResult)) {
+
+	$slackers[] = $row['username'];
+}
+
 
 echo "</select><input name='startdate' value=\"" . $startdate_SQL . "\" type=hidden></form></td></tr></table></div>";
 mysql_free_result($citizensResult);
+
 
 //echo "<table border=0 cellpadding=2 cellspacing=2><tr><td bgcolor=\"#DDDDDD\">";echo "<b>" . $fullname . ", " . $descduty . "</b>";
 //echo "</td></tr></table>";
@@ -326,16 +338,20 @@ echo "<input type='hidden' name='startdate' value=\"" . $startdate_in . "\" />";
 echo "<input type='hidden' name='username' value=\"". $employee . "\" id='username' />";
 echo "<input id='print' type='submit' value=\"Printable\" class='button'\"/></form></div> \n";
 
-echo "</div>";
+
+echo "<form method=\"post\" action=\"complete-timesheet.php\">";
+echo "<input type='hidden' name='startdate' value=\"" . $startdate_in . "\" />";
+echo "<input type='hidden' name='username' value=\"". $employee . "\" id='username' />";
+echo "<input id='printcomplete' type='submit' value=\"Print Completed\" class='button'\"/></form></div>\n";
 
 // following the tradition this fustercluck of a file, the PHP mysteriously ends here...
 ?>
 
 <!-- ...in its place, we have html and javascript... -->
 <script language="Javascript">
-function toggle(source) {
+function toggle(source, $className) {
 
-	checkboxes = document.getElementsByClassName('checkMe');
+	checkboxes = document.getElementsByClassName($className);
 	for(var i=0; i < checkboxes.length; ++i)
 		checkboxes[i].checked = source.checked;
 }
@@ -348,16 +364,29 @@ function toggle(source) {
 // dynamically create a checkbox based on available users
 echo '<div class="adminCheckboxOuter">';
 echo "<form class=\"adminCheckboxInner\" method=\"post\" action=\"master-timesheet.php\">";
-echo "<input type='checkbox' onClick='toggle(this)'/>Check All<br/>";
+echo "<input type='checkbox' onClick='toggle(this, \"checkMe\")'/>Check All<br/>";
 
-foreach($allUsers as $nextUser)
-{
+foreach($allUsers as $nextUser) {
+
 	if ($nextUser !== "")
 		echo '<input class="checkMe" type="checkbox" name="'.$nextUser.'">'.$nextUser.'<br>';
 	
 }
 echo "<input id='print' type='submit' value=\"Print Checked\" class='button'\"/></form></div> \n";
 echo "</form><br>";
+
+echo '<div class="adminCheckboxOuter">';
+echo "<form class=\"adminCheckboxInner\" method=\"post\" action=\"master-timesheet.php\">";
+echo "<h3><center>Incomplete Vouchers</center></h3>";
+echo "<input type='checkbox' onClick='toggle(this, \"checkSlack\")'/>Check All<br/>";
+foreach($slackers as $s) {
+
+	if ($s !== "")
+		echo '<input id="print" class="checkSlack" type="checkbox" name="'.$s.'">'.$s.'<br>';
+	
+}
+echo "<input id='print' type='submit' value=\"Remind\" class='button'\"/></div> \n";
+echo "</form></div>";
 
 echo "<div style=\"\">";
 echo '</div>';

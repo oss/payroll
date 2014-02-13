@@ -281,15 +281,16 @@ echo "<tr><td align='center'><font size='2'>Payroll amount<br />&nbsp;</font></t
 echo "</table></div> \n";
 
 
-
+// edit hours button
 echo "<div id='buttons'>";
 echo "<form action='hoursform.php' method='post'>";
 echo "<input type='hidden' name='startdate' value=\"" . $startdate_in . "\" />";
 echo "<input id='editHrs' type='submit' value=\"Edit Hours\" class='button' /></form>";
+
+// printable button
 echo "<form action=\"timesheet.php\" method=\"post\">";
 echo "<input type='hidden' name='startdate' value=\"" . $startdate_in . "\" />";
 echo "<input id='print' type='submit' value=\"Printable\" class='button' /></form></div> \n";
-
 
 // end container
 echo "<!-- container--> </div> \n";

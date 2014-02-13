@@ -2,6 +2,12 @@
 
 include("payroll.inc");
 
+// if the "Week Complete" checkbox was checked, set to true. else set false.
+if (isset($_POST['complete']))
+	$isComplete = 1;
+else
+	$isComplete = 0;
+
 $weekbegins = $_POST["startdate"];
 
 $startdatetext = strtotime($weekbegins . " 00:00:00");
@@ -47,7 +53,7 @@ if ( mysql_errno() != 0 ) {
 	exit(1);
 }
 
-$querytext="INSERT INTO `payrollinfo` ( `username` , `date` , `starttime` , `endtime` ) VALUES ('". $username . "', '" . $date_SQL . "', '" . $starttime_SQL . "', '" . $endtime_SQL . "')";
+$querytext="INSERT INTO `payrollinfo` ( `username` , `date` , `starttime` , `endtime`, `iscomplete` ) VALUES ('". $username . "', '" . $date_SQL . "', '" . $starttime_SQL . "', '" . $endtime_SQL ."', '".$isComplete."')";
 //echo $querytext . "<br>";
 $result = mysql_query($querytext,$db);
 
