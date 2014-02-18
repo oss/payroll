@@ -18,6 +18,10 @@ $(document).ready(function(){
 	var wageInput = $("#wage");
 	var wageInfo = $("#wageInfo");
 	var wage = "";
+
+	var emailInput = $('#email');
+	var emailInfo = $('emailInfo');
+	var email = "";
 	
 	$("#netid").blur(function()
 		{
@@ -143,6 +147,8 @@ $(document).ready(function(){
 		type = $("#type").val();
 		title = $("#title").val();
 		wage = $("#wage").val();
+		// latest
+		email = $("#email").val();
 		var error = false;				   				   	
 		if(netid == "")
 			{
@@ -194,7 +200,7 @@ $(document).ready(function(){
 			$(this).hide();
 			$("#loading").append('<img src="images/loading.gif" alt="Loading" id="loading" />');
 			
-			$.post("data.php", { netid: netid, ssn: ssn, type: type, title: title, wage: wage}, function(data, textStatus)
+			$.post("data.php", { netid: netid, ssn: ssn, type: type, title: title, wage: wage, email: email}, function(data, textStatus)
 				{
 				$("#sendEmail").slideUp("normal", function() {				   
 					$("#sendEmail").before('<h2>'+ textStatus +', refresh to edit again.</h2>');	

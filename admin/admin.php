@@ -344,10 +344,8 @@ echo "<input type='hidden' name='startdate' value=\"" . $startdate_in . "\" />";
 echo "<input type='hidden' name='username' value=\"". $employee . "\" id='username' />";
 echo "<input id='printcomplete' type='submit' value=\"Print Completed\" class='button'\"/></form></div>\n";
 
-// following the tradition this fustercluck of a file, the PHP mysteriously ends here...
 ?>
 
-<!-- ...in its place, we have html and javascript... -->
 <script language="Javascript">
 function toggle(source, $className) {
 
@@ -358,7 +356,6 @@ function toggle(source, $className) {
 
 </script>
 
-<!-- ...and now we're back into PHP again, like a Phoenix rising from the ashes -->
 <?
 
 // dynamically create a checkbox based on available users

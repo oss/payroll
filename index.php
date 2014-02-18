@@ -44,6 +44,7 @@
 					echo "$('#type').attr('value', \"" . $row["type"] . "\");";
 					echo "$('#title').attr('value', \"" . $row["descduty"] . "\");";
 					echo "$('#wage').attr('value', \"" . $row["payrate"] . "\");";
+					echo "$('#email').attr('value', \"" . $row["email"] . "\");";
 				?>
 			});
 		</script>
@@ -160,6 +161,15 @@
 						</tr>
 						<tr>
 							<td><span id="wageInfo"></span></td>
+						</tr>
+						<tr>
+							<td><label for="email" id="emailLabel">Email Address</label></td>
+						</tr>
+						<tr>
+							<td><input name="email" id="email" value="" type="text" /></td>
+						</tr>
+						<tr>
+							<td><span id="emailInfo"></span></td>
 						</tr>
 						<tr>
 							<td><button type="submit" id="submit" style="display:none;">Save >></button></td>
