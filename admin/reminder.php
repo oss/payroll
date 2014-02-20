@@ -1,19 +1,22 @@
 <?php
 
-
-echo "testing";
 include('../payroll.inc');
 
-$queryText = "SELECT * FROM `payrollinfo` WHERE `iscomplete`=0 AND `date`='".$_POST['startdate']."'";
-$result = mysql_query($queryText,$db);
+// note: going to add PATH detection stuff here later, so that this is portable.
+//       hard coding the include path is definitely not the way to go
+include('/usr/share/php/Mail.php');
+$emails = array();
 
-while($row = mysql_fetch_assoc($result)) {
-//	echo "isthisworking";
-	$user = $row['username'];
-	echo $user;
-	//echo '<img src="timesheet2.php?startdate='.$_POST["startdate"]."&username=".$user.'">';
+// get email addresses
+foreach($_POST as $key=>$value) {
+	$queryText = "SELECT email FROM `empinfo` WHERE `username`='".$key."'";
+	$result = mysql_query($queryText,$db);
+	$row = mysql_fetch_row($result);
+	$emails[] = $row[0];
 }
 
+foreach($emails as $addr)
+	echo $addr;
 
 
 
