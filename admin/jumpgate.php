@@ -10,11 +10,10 @@ $from = "lulzbeacon@gmail.com";
 $subject = "Vouchers Due!";
 $message = "Hello earthling. Vouchers are due on Monday.";
 
-$count = 0;
+$success = 1;
 foreach($emails as $addr) {
-
-	sendReminder($addr, $from, $subject.$count, $message) ;
-	$count += 1;
+	if (valid_email($addr))
+		sendReminder($addr, $from, $subject.$count, $message);
 }
 
 header ('location: admin.php?reminderSent=1&startdate=' . $_POST['startdate'].'&employee='.$_POST['employee']);
