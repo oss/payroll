@@ -372,14 +372,16 @@ foreach($allUsers as $nextUser) {
 echo "<input id='print' type='submit' value=\"Print Checked\" class='button'\"/></form></div> \n";
 echo "</form><br>";
 
+// creates a checkbox listing employees that have not completed their vouchers. emails them
+// reminder upon clicking submit button
 echo '<div class="adminCheckboxOuter">';
-echo "<form class=\"adminCheckboxInner\" method=\"post\" action=\"master-timesheet.php\">";
+echo "<form class=\"adminCheckboxInner\" method=\"post\" action=\"jumpgate.php\">";
 echo "<h3><center>Incomplete Vouchers</center></h3>";
 echo "<input type='checkbox' onClick='toggle(this, \"checkSlack\")'/>Check All<br/>";
 foreach($slackers as $s) {
 
 	if ($s !== "")
-		echo '<input id="print" class="checkSlack" type="checkbox" name="'.$s.'">'.$s.'<br>';
+		echo '<input class="checkSlack" type="checkbox" name="'.$s.'">'.$s.'<br>';
 	
 }
 echo "<input id='print' type='submit' value=\"Remind\" class='button'\"/></div> \n";
