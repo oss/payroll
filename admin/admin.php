@@ -5,6 +5,7 @@ include("header.inc");
 include("payroll.inc");
 
 $saveok = $_GET["saveok"];
+$reminderSent = $_GET['reminderSent'];
 $employee = $_GET["employee"];
 
 //date start
@@ -384,6 +385,8 @@ foreach($slackers as $s) {
 		echo '<input class="checkSlack" type="checkbox" name="'.$s.'">'.$s.'<br>';
 	
 }
+echo "<input type='hidden' name='startdate' value=\"" . $startdate_in . "\" />";
+echo "<input type='hidden' name='employee' value=\"". $employee . "\" id='username' />";
 echo "<input id='print' type='submit' value=\"Remind\" class='button'\"/></div> \n";
 echo "</form></div>";
 
@@ -394,6 +397,7 @@ echo '</div>';
 echo "<!-- container--></div>\n";
 
 if ($saveok) echo "<div id='success'>Your hours have been sucessfully recorded.</div>";
+if ($reminderSent) echo "<div id='success'>Reminder emails sent.</div>";
 else echo "&nbsp;";
 
 
