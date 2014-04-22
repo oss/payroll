@@ -191,11 +191,18 @@ echo "<td class='weeks'>Total</td>";
 for ($i=0; $i<7; $i++){
 	$stemp = $starttimes[mktime(0,0,0,$month,$day+$i,$year)];
 	$etemp = $endtimes[mktime(0,0,0,$month,$day+$i,$year)];
-	if ( ($etemp != -1) && ($stemp != -1)) $ttemp = ($etemp - $stemp) / 60 / 60;
-	else $ttemp = 0;
-	if ($ttemp == 0)  $ttempprint = "";
-	if ($ttemp > 5) {$ttempprint = $ttemp-0.5; $daysover5=$daysover5+1;}
-	else $ttempprint = $ttemp; 
+	if ( ($etemp != -1) && ($stemp != -1))
+		$ttemp = ($etemp - $stemp) / 60 / 60;
+	else
+		$ttemp = 0;
+	if ($ttemp == 0)
+		$ttempprint = "";
+	if ($ttemp > 5) {
+		$ttempprint = $ttemp-0.5;
+		$daysover5=$daysover5+1;
+	}
+	else
+		$ttempprint = $ttemp; 
 	echo "<td class='total' align='center'><b>" . $ttempprint . "</b></td>";
 	$week1total += $ttemp;
 }

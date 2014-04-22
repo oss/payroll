@@ -40,7 +40,6 @@
 	            	$result = mysql_query("select * from empinfo where username='$username'",$db) or die(mysql_error());
 					$row = mysql_fetch_array($result);
 					echo "$('#netid').attr('value', \"" . $row["username"] . "\");";
-					echo "$('#ssn').attr('value', \"" . $row["social"] . "\");";
 					echo "$('#type').attr('value', \"" . $row["type"] . "\");";
 					echo "$('#title').attr('value', \"" . $row["descduty"] . "\");";
 					echo "$('#wage').attr('value', \"" . $row["payrate"] . "\");";
@@ -125,15 +124,6 @@
 						</tr>
 						<tr>
 							<td><span id="netidInfo"></span></td>
-						</tr>
-						<tr>
-							<td><label for="ssn" id="ssnLabel">SSN (###-##-####)</label></td>
-						</tr>
-						<tr>
-							<td><input name="ssn" id="ssn" value="" type="text" /></td>
-						</tr>
-						<tr>
-							<td><span id="ssnInfo"></span></td>
 						</tr>
 						<tr>
 							<td><label for="type" id="typeLabel">Type (number)</label></td>

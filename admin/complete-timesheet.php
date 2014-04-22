@@ -6,6 +6,7 @@
 include('../payroll.inc');
 
 $queryText = "SELECT * FROM `payrollinfo` WHERE `iscomplete`=1 AND `date`='".$_POST['startdate']."'";
+$result = mysql_query($queryText,$db);
 
 while($row = mysql_fetch_assoc($result)) {
 	$user = $row['username'];

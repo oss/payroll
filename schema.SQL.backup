@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.1.46, for koji-linux-gnu (x86_64)
 --
--- Host: localhost    Database: payroll_test
+-- Host: localhost    Database: payroll
 -- ------------------------------------------------------
 -- Server version	5.1.46
 
@@ -19,12 +19,12 @@
 -- Table structure for table `empinfo`
 --
 
-DROP TABLE IF EXISTS `empinfo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `empinfo` (
+CREATE TABLE IF NOT EXISTS `empinfo` (
   `username` varchar(10) DEFAULT NULL,
   `fullname` varchar(20) DEFAULT NULL,
+  `social` varchar(11) DEFAULT NULL,
   `type` varchar(4) NOT NULL,
   `descduty` varchar(30) DEFAULT NULL,
   `payrate` float(4,2) DEFAULT NULL
@@ -35,17 +35,14 @@ CREATE TABLE `empinfo` (
 -- Table structure for table `payrollinfo`
 --
 
-DROP TABLE IF EXISTS `payrollinfo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `payrollinfo` (
+CREATE TABLE IF NOT EXISTS `payrollinfo` (
   `username` varchar(20) NOT NULL,
   `date` date NOT NULL DEFAULT '0000-00-00',
   `starttime` time NOT NULL DEFAULT '00:00:00',
   `endtime` time NOT NULL DEFAULT '00:00:00',
   `totaltime` tinyint(4) DEFAULT NULL,
-  `iscomplete` tinyint(1) NOT NULL DEFAULT '0',
-  `currentPayrate` float(4,2) DEFAULT NULL,
   KEY `date` (`date`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -59,4 +56,4 @@ CREATE TABLE `payrollinfo` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-22 16:13:08
+-- Dump completed on 2013-12-06 22:43:54

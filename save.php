@@ -53,7 +53,7 @@ if ( mysql_errno() != 0 ) {
 	exit(1);
 }
 
-$querytext="INSERT INTO `payrollinfo` ( `username` , `date` , `starttime` , `endtime`, `iscomplete` ) VALUES ('". $username . "', '" . $date_SQL . "', '" . $starttime_SQL . "', '" . $endtime_SQL ."', '".$isComplete."')";
+$querytext="INSERT INTO `payrollinfo` ( `username` , `date` , `starttime` , `endtime`, `iscomplete`, `currentPayrate`) VALUES ('". $username . "', '" . $date_SQL . "', '" . $starttime_SQL . "', '" . $endtime_SQL ."', '".$isComplete. "', '".$_POST['payrate']."')";
 //echo $querytext . "<br>";
 $result = mysql_query($querytext,$db);
 

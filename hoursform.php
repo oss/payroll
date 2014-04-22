@@ -300,6 +300,7 @@ return $output;
 
 		<form name="hours" action="save.php" method="post">
 			<input type=hidden name="startdate" value="<?php echo $_POST["startdate"] ?>">
+			<input type=hidden name="payrate" value="<?php echo $payrate ?>">
 			<div id="timeSelectorGrid">
 				<table id='timeSelectorGridTable'>
 					<tr class='weeks'>
