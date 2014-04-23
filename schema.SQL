@@ -23,11 +23,13 @@ DROP TABLE IF EXISTS `empinfo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `empinfo` (
-  `username` varchar(10) DEFAULT NULL,
+  `username` varchar(10) NOT NULL DEFAULT '',
   `fullname` varchar(20) DEFAULT NULL,
   `type` varchar(4) NOT NULL,
   `descduty` varchar(30) DEFAULT NULL,
-  `payrate` float(4,2) DEFAULT NULL
+  `payrate` float(4,2) DEFAULT NULL,
+  `email` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`username`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -59,4 +61,4 @@ CREATE TABLE `payrollinfo` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-22 16:13:08
+-- Dump completed on 2014-04-23 17:40:34
