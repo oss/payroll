@@ -4,8 +4,8 @@
 	<head>
         <title>Open Systems Solutions - Payroll</title>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<link type="text/css" href="/payroll/css/south-street/jquery-ui-1.7.1.custom.css" rel="stylesheet" />
-        <link rel="stylesheet" type="text/css" href="/payroll/css/style.css" media="screen" />
+		<link type="text/css" href="/payroll-test/css/south-street/jquery-ui-1.7.1.custom.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="/payroll-test/css/style.css" media="screen" />
         <script src="js/jquery.js" type="text/javascript"></script>
 		<script src="js/submitform.js" type="text/javascript"></script>
 		<script type="text/javascript" src="js/jquery-ui-1.7.1.custom.min.js"></script>

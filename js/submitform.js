@@ -3,9 +3,9 @@ $(document).ready(function(){
 	var netidInfo = $("#netidInfo");
 	var netid = "";
 	
-	var ssnInput = $("#ssn");
-	var ssnInfo = $("#ssnInfo");
-	var ssn = "";
+	var emailInput = $("#email");
+	var emailInfo = $("#emailInfo");
+	var email = "";
 	
 	var typeInput = $("#type");
 	var typeInfo = $("#typeInfo");
@@ -18,10 +18,6 @@ $(document).ready(function(){
 	var wageInput = $("#wage");
 	var wageInfo = $("#wageInfo");
 	var wage = "";
-
-	var emailInput = $('#email');
-	var emailInfo = $('emailInfo');
-	var email = "";
 	
 	$("#netid").blur(function()
 		{
@@ -46,30 +42,52 @@ $(document).ready(function(){
 			return false;
 			}
 		});
-	$("#ssn").blur(function()
+	$("#email").blur(function()
 		{
-		ssn = "";
-		var pattern = /^([0-6]\d{2}|7[0-6]\d|77[0-2])([ \-]?)(\d{2})\2(\d{4})$/;
-		if(pattern.test($("#ssn").val()))
+		email = "";
+		if($("#email").val() != "")
 			{
-			ssnInput.removeClass("error");
-			ssnInfo.removeClass("errortext");
-			ssnInput.addClass("success");
-			ssnInfo.addClass("successtext");
-			ssnInfo.text("");
-			ssn = $("#ssn").val();
+			emailInput.removeClass("error");
+			emailInfo.removeClass("errortext");
+			emailInput.addClass("success");
+			emailInfo.addClass("successtext");
+			emailInfo.text("");
+			email = $("#email").val();
 			}
 		//if it's NOT valid
 		else
 			{
-			ssnInput.removeClass("success");
-			ssnInfo.removeClass("successtext");
-			ssnInput.addClass("error");
-			ssnInfo.addClass("errortext");
-			ssnInfo.text("Type in a valid SSN please.");
+			emailInput.removeClass("success");
+			emailInfo.removeClass("successtext");
+			emailInput.addClass("error");
+			emailInfo.addClass("errortext");
+			emailInfo.text("Type in a valid email please.");
 			return false;
 			}
 		});
+// the fuck is this? -->	{
+	// 	ssn = "";
+	// 	var pattern = /^([0-6]\d{2}|7[0-6]\d|77[0-2])([ \-]?)(\d{2})\2(\d{4})$/;
+	// 	if(pattern.test($("#ssn").val()))
+	// 		{
+	// 		ssnInput.removeClass("error");
+	// 		ssnInfo.removeClass("errortext");
+	// 		ssnInput.addClass("success");
+	// 		ssnInfo.addClass("successtext");
+	// 		ssnInfo.text("");
+	// 		ssn = $("#ssn").val();
+	// 		}
+	// 	//if it's NOT valid
+	// 	else
+	// 		{
+	// 		ssnInput.removeClass("success");
+	// 		ssnInfo.removeClass("successtext");
+	// 		ssnInput.addClass("error");
+	// 		ssnInfo.addClass("errortext");
+	// 		ssnInfo.text("Type in a valid SSN please.");
+	// 		return false;
+	// 		}
+	// 	});
 	$("#type").blur(function()
 		{
 		type = "";
@@ -143,12 +161,10 @@ $(document).ready(function(){
 	$("#submit").click(function()
 		{	
 		netid = $("#netid").val();
-		ssn = $("#ssn").val();
+		email = $("#email").val();
 		type = $("#type").val();
 		title = $("#title").val();
 		wage = $("#wage").val();
-		// latest
-		email = $("#email").val();
 		var error = false;				   				   	
 		if(netid == "")
 			{
@@ -159,15 +175,15 @@ $(document).ready(function(){
 			netidInfo.text("Type in a valid netid please.");
 			error = true;
 			}
-		if (ssn == "") 
-			{
-			ssnInput.removeClass("success");
-			ssnInfo.removeClass("successtext");
-			ssnInput.addClass("error");
-			ssnInfo.addClass("errortext");
-			ssnInfo.text("Type in a valid SSN please.");
-			error = true;
-			}	
+		if (email == "") 
+		 	{
+		 	emailInput.removeClass("success");
+		 	emailInfo.removeClass("successtext");
+		 	emailInput.addClass("error");
+		 	emailInfo.addClass("errortext");
+		 	emailInfo.text("Type in a valid email please.");
+		 	error = true;
+		 	}	
 		if (type == "") 
 			{
 			typeInput.removeClass("success");
@@ -200,7 +216,7 @@ $(document).ready(function(){
 			$(this).hide();
 			$("#loading").append('<img src="images/loading.gif" alt="Loading" id="loading" />');
 			
-			$.post("data.php", { netid: netid, ssn: ssn, type: type, title: title, wage: wage, email: email}, function(data, textStatus)
+			$.post("data.php", { netid: netid, type: type, title: title, wage: wage, email: email}, function(data, textStatus)
 				{
 				$("#sendEmail").slideUp("normal", function() {				   
 					$("#sendEmail").before('<h2>'+ textStatus +', refresh to edit again.</h2>');	

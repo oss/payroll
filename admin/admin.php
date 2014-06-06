@@ -59,7 +59,6 @@ while ($row = mysql_fetch_array($citizensResult)) {
 }
 $slackers = array();
 
-
 $slackQuery = "SELECT * FROM `payrollinfo` WHERE `iscomplete`=0 AND `date`='".$startdate_SQL."'";
 $slackResult = mysql_query($slackQuery, $db);
 
@@ -325,6 +324,14 @@ echo "<tr><td align=center><font size=2>Payrate<br>&nbsp;</font></td></tr>";
 $grandtotal = $week1total + $week2total;
 echo "<tr><td align=center><font size=3><b>" . $grandtotal . "</b></font></td></tr>";
 echo "<tr><td align=center><font size=2>Grand Total Hours<br>&nbsp;</font></td></tr>";
+
+// FISCAL YEAR TOTAL
+$fiscalYearStart = (int)$month < 7 ? (int)$year - 1 : (int) $year;
+$querStr = "select (SUM(time_to_sec(endtime)-time_to_sec(starttime)) / 60 / 60) as sumofallhours from payrollinfo where username='";
+$querStr = $querStr . $username . "' and date between date('" . $fiscalYearStart . "-07-01') and date('" . ($fiscalYearStart + 1) . "-07-01');";
+$row = mysql_fetch_array(mysql_query($querStr));
+echo "<tr><td align=center><font size=3><b>" . (float)$row["sumofallhours"] . "</b></font></td></tr>";
+echo "<tr><td align=center><font size=2>Hours This Fiscal Year<br>&nbsp;</font></td></tr>";
 
 //PAYROLL AMOUNT
 $payrollamt = $payrate * ($week1total + $week2total);

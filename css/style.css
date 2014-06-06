@@ -400,6 +400,41 @@ h2{
 	background: #dafde7;
 	border-color: #7fffaf;
 }
+#emailLabel {
+	display: block;
+	color: #797979;
+	font: normal 20px Arial;
+	margin-left:10px;
+	}
+#email { 
+	width: 300px;
+	font: normal 15px Georgia;
+	padding: 5px;
+	margin-left:10px;
+	color: #949494;
+	border: 1px solid #cecece;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+	}
+#email:focus {
+	background:#F3FAFF url(/payroll/images/input_highlight_bg.png) repeat-x scroll center top;
+	border-color:#B7C7D3;
+	font: normal 50px Georgia;
+}
+#email.error { 
+	background: #f8dbdb;
+	border: 1px solid #e77776;
+}
+#email.success{
+	background: #dafde7;
+	border-color: #7fffaf;
+}
 
 button { 
 	-moz-border-radius-bottomleft:5px;

@@ -189,8 +189,14 @@ echo "</tr><tr>";
 
 echo "<td class='weeks'>Total</td>";
 for ($i=0; $i<7; $i++){
+
+	//         
+	//         [ This code is so elegant! WOW! ]
+	//   > <  /
+	//    O  
 	$stemp = $starttimes[mktime(0,0,0,$month,$day+$i,$year)];
 	$etemp = $endtimes[mktime(0,0,0,$month,$day+$i,$year)];
+
 	if ( ($etemp != -1) && ($stemp != -1))
 		$ttemp = ($etemp - $stemp) / 60 / 60;
 	else
@@ -199,10 +205,11 @@ for ($i=0; $i<7; $i++){
 		$ttempprint = "";
 	if ($ttemp > 5) {
 		$ttempprint = $ttemp-0.5;
-		$daysover5=$daysover5+1;
+		$daysover5++;
 	}
 	else
 		$ttempprint = $ttemp; 
+	//echo "<td class='total' align='center'><b>" . $ttempprint . "</b></td>";
 	echo "<td class='total' align='center'><b>" . $ttempprint . "</b></td>";
 	$week1total += $ttemp;
 }
@@ -270,7 +277,7 @@ echo "</tr></table></div> \n";
 //TOTAL HOURS
 echo "\n <div id='periodTotal'>";
 echo "<table id='periodTotalTable'>";
-echo "<tr><td align='center'><font size='3'><b>" . date("m-d-Y", mktime($hour,$minute,$second,$month,$day+20,$year)) . "</b></font></td></tr>";
+echo "<tr><td align='center'><font size='3'><b>" . date("m-d-Y", mktime($hour,$minute,$second,$month,$day+14,$year)) . "</b></font></td></tr>";
 echo "<tr><td align='center'><font size='2'>End Date<br />&nbsp;</font></td></tr>";
 
 echo "<tr><td align='center'><font size='3'><b>" . $payrate . "</b></font></td></tr>";

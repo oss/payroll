@@ -192,9 +192,9 @@ echo "</select></form></td><td>** <i>denotes current week</i></td></tr></table><
 
 function timedrop($type, $month, $day, $offset, $year, $start) {
 
-$second = 0;
+$second = 1;
 $minute = 0;
-$hour = 8;
+$hour = 0;
 
 
 //$output = "<select name=\"" . $type  . date("mdY", mktime(12,30,0,$month,$day,$year)) . "\" onChange=\"reCalcHours()\">";
@@ -202,7 +202,7 @@ $output = "<select name=\"" . $type  . $offset . "\" onChange=\"reCalcHours()\" 
 
 $output .= "<option value=\"0\">--";
 
-for ($hour = 8; $hour <= 24; $hour++) {
+for ($hour = 0; $hour <= 23; $hour++) {
 	for ($minute = 0; $minute < 60; $minute=$minute+30){
 		$realtime = mktime($hour,$minute,$second,$month,$day,$year);
 		$add="";
