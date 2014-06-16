@@ -231,65 +231,74 @@ return $output;
 			}
 		</script>
 		<script LANGUAGE="JAVASCRIPT">
-			function reCalcHours(date) {
-			
-			var total1 = 0;
-			var total2 = 0;
-			$("#entry_error").fadeOut();
-			
 			var START = 0;
 			var END = 1;
 			var HOURS = 2;
-			
-			var hours = [[ <?php for ($i = 0; $i<14; $i++) { echo "document.hours.start".$i.", "; } ?> ],
+			var OPTIONS = 0;	
+			function reCalcHours(date) {
+				var total1 = 0;
+				var total2 = 0;
+				$("#entry_error").fadeOut();
+				
+				var hours = populatehours();	
+
+				for (var i = 0; i < 14; i++) {
+				  var diff = hours[END][i].value - hours[START][i].value;
+				  var diffHours = diff/60/60;
+				  if (diffHours > 5) { diffHours -= .5; }
+				  
+
+				  if(hours[START][i].value == 0 && hours[END][i].value != 0) {
+				    hours[START][i].options[1].selected = true;
+				    i--;
+				    /*
+				    if (hours[END][i].selectedIndex > 1) {
+				      hours[START][i].options[hours[END][i].selectedIndex - 1].selected = true;
+				      i--;
+				    } else {
+				      $("#entry_error").text("Please enter a start time."); $("#entry_error").fadeIn();
+				    }
+				    */
+				    continue;
+				  }
+
+				  if(hours[END][i].value != 0 && diff < 0) {
+				    $("#entry_error").text("End time must be after start time."); $("#entry_error").fadeIn();
+				  } 
+				  if (diff > 0) {
+				    hours[HOURS][i].value = diffHours;
+
+				    if (i < 7) {
+				      total1  += diffHours;
+				    } else {
+				      total2  += diffHours;
+				    }
+				  } else {
+				    hours[HOURS][i].value = 0;
+				  }
+				}
+				var grandtotal = 0;
+				grandtotal = total1 + total2;
+				document.hours.hourstotal1.value = total1;
+				document.hours.hourstotal2.value = total2;
+				document.hours.hourstotal.value = grandtotal;
+
+			}
+			function wipeHours() {
+				var hours = populatehours();
+				for (var i = 0; i <= 13; i++){
+					document.getElementsByName("start"+i)[OPTIONS].value = 0;
+  					document.getElementsByName("end"+i)[OPTIONS].value = 0;	
+					hours[HOURS][i].value=0;	
+				}
+			}
+			function populatehours() {
+				return [[ <?php for ($i = 0; $i<14; $i++) { echo "document.hours.start".$i.", "; } ?> ],
 				     [ <?php for ($i = 0; $i<14; $i++) { echo "document.hours.end".$i.", "; } ?> ],
 				     [ <?php for ($i = 0; $i<14; $i++) { echo "document.hours.hours".$i.", "; } ?> ]];
-						
-
-			for (var i = 0; i < 14; i++) {
-			  var diff = hours[END][i].value - hours[START][i].value;
-			  var diffHours = diff/60/60;
-			  if (diffHours > 5) { diffHours -= .5; }
-			  
-
-			  if(hours[START][i].value == 0 && hours[END][i].value != 0) {
-			    hours[START][i].options[1].selected = true;
-			    i--;
-			    /*
-			    if (hours[END][i].selectedIndex > 1) {
-			      hours[START][i].options[hours[END][i].selectedIndex - 1].selected = true;
-			      i--;
-			    } else {
-			      $("#entry_error").text("Please enter a start time."); $("#entry_error").fadeIn();
-			    }
-			    */
-			    continue;
-			  }
-
-			  if(hours[END][i].value != 0 && diff < 0) {
-			    $("#entry_error").text("End time must be after start time."); $("#entry_error").fadeIn();
-			  } 
-			  if (diff > 0) {
-			    hours[HOURS][i].value = diffHours;
-
-			    if (i < 7) {
-			      total1  += diffHours;
-			    } else {
-			      total2  += diffHours;
-			    }
-} else {
-			    hours[HOURS][i].value = 0;
-			  }
-			}
-
-			var grandtotal = 0;
-			grandtotal = total1 + total2;
-			document.hours.hourstotal1.value = total1;
-			document.hours.hourstotal2.value = total2;
-			document.hours.hourstotal.value = grandtotal;
-
-			}
-		</script>
+			} 
+		</script>	
+	
 	</head>
 	<body onload="checkCompleted()">
 	<div id="backButton"><a href='view.php'><img src='images/back.png' /></a></div>
@@ -416,7 +425,8 @@ return $output;
 							<input type=checkbox name="complete" id="pleaseCheckMe">
 							</form>
 							<input type=submit value="Save" class="goodbutton">
-							<input type=reset value="Reset" class="badbutton">
+							<!-- <input type=reset value="Reset" class="badbutton"> -->
+							<input type=button value="Reset" onclick="wipeHours()" class="badbutton">
 						</td>
 					</tr>
 				</table>

@@ -233,7 +233,7 @@ h2{
     -webkit-border-bottom-right-radius: 5px;
 	}
 #netid:focus {
-	background:#F3FAFF url(/payroll/images/input_highlight_bg.png) repeat-x scroll center top;
+	background:#F3FAFF url(/payroll-test/images/input_highlight_bg.png) repeat-x scroll center top;
 	border-color:#B7C7D3;
 	font: normal 50px Georgia;
 }
@@ -279,6 +279,7 @@ h2{
 	}
 #ssn:focus {
 	background:#F3FAFF url(/payroll/images/input_highlight_bg.png) repeat-x scroll center top;
+	background:#F3FAFF url(/payroll-test/images/input_highlight_bg.png) repeat-x scroll center top;
 	border-color:#B7C7D3;
 	font: normal 50px Georgia;
 	width: 400px;
@@ -633,14 +634,13 @@ button {
 }
 
 #editHrs, #print{
-	padding: 3px;
+	padding: 5px;
 	margin: auto;
 	margin-bottom: 3px;
 	width: 60px;
 	vertical-align: middle;
 	background:#B9C9FE;
 	font-size:10px;
-	line-height: 50px;
 	border: 0px;
 	text-shadow:1px 1px #719E03;
 	-moz-border-radius-topleft: 5px;

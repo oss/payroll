@@ -1,4 +1,7 @@
 <?php
+
+require_once('../config.inc.php');
+
 $netid = $_POST['netid'];
 $fullname = $_POST['fullname'];
 $ssn = $_POST['ssn'];
