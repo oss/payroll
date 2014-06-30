@@ -283,7 +283,7 @@ return $output;
 				document.hours.hourstotal2.value = total2;
 				document.hours.hourstotal.value = grandtotal;
 
-			}/*
+			}
 			function wipeHours() {
 				var hours = populatehours();
 				for (var i = 0; i <= 13; i++){
@@ -292,7 +292,7 @@ return $output;
 					hours[HOURS][i].value=0;	
 				}
 			}
-			*/
+			
 			function populatehours() {
 				return [[ <?php for ($i = 0; $i<14; $i++) { echo "document.hours.start".$i.", "; } ?> ],
 				     [ <?php for ($i = 0; $i<14; $i++) { echo "document.hours.end".$i.", "; } ?> ],
@@ -421,7 +421,7 @@ return $output;
 					</tr>
 					<tr>
 						<td class='time' colspan=9 align=right>
-							<span class="datButtonTho">Workweek Complete: </span>
+							<span class="datButtonTho">Pay Period Complete: </span>
 							<form class="datCheckBoxTho" method="post" action="save.php">
 							<input type=checkbox name="complete" id="pleaseCheckMe">
 							</form>

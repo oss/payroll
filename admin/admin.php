@@ -377,6 +377,9 @@ foreach($allUsers as $nextUser) {
 		echo '<input class="checkMe" type="checkbox" name="'.$nextUser.'">'.$nextUser.'<br>';
 	
 }
+// Edited by jgr68 on Mon Jun 30 - 13:35
+// Addint 'startdate' input to 'startdate=null' bug
+echo "<input type='hidden' name='startdate' value=\"" . $startdate_in . "\" />";
 echo "<input id='print' type='submit' value=\"Print Checked\" class='button'\"/></form></div> \n";
 echo "</form><br>";
 
