@@ -42,7 +42,7 @@ echo "<select name='startdate' onchange=\"ws.submit()\">";
 //onchange=\"ws.submit()\"
 
 $right_now = time();
-for ($i=20; $i<40; $i++) {
+for ($i=0; $i<28; $i++) {
    $week_start = mktime(0,0,0, $ws_month, $ws_day+($i*14), $ws_year);
    $week_end = mktime(23,59,59, $ws_month, $ws_day+($i*14)+13, $ws_year);
 
