@@ -263,9 +263,11 @@ return $output;
 				  }
 
 				  if(hours[END][i].value != 0 && diff < 0) {
+                    $(".goodbutton").attr("disabled", "disabled");
 				    $("#entry_error").text("End time must be after start time."); $("#entry_error").fadeIn();
-				  } 
+                  }
 				  if (diff > 0) {
+                    $(".goodbutton").removeAttr("disabled");
 				    hours[HOURS][i].value = diffHours;
 
 				    if (i < 7) {
