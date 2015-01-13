@@ -40,11 +40,13 @@
 	            	$result = mysql_query("select * from empinfo where username='$username'",$db) or die(mysql_error());
 					$row = mysql_fetch_array($result);
 					echo "$('#netid').attr('value', \"" . $row["username"] . "\");";
+					echo "$('#fullname').attr('value', \"" . $row["fullname"] . "\");";
 					echo "$('#type').attr('value', \"" . $row["type"] . "\");";
 					echo "$('#title').attr('value', \"" . $row["descduty"] . "\");";
 					echo "$('#wage').attr('value', \"" . $row["payrate"] . "\");";
 					echo "$('#acct').attr('value', \"" . $row["acct"] . "\");";
 					echo "$('#email').attr('value', \"" . $row["email"] . "\");";
+					echo "$('#acct').attr('value', \"" . $row["acctcode"] . "\");";
 				?>
 			});
 		</script>
@@ -125,6 +127,15 @@
 						</tr>
 						<tr>
 							<td><span id="netidInfo"></span></td>
+						</tr>
+						<tr>
+							<td><label for="fullname" id="fullnameLabel">Full Name</label></td>
+						</tr>
+						<tr>
+							<td><input name="fullname" id="fullname" value="" type="text" /></td>
+						</tr>
+						<tr>
+							<td><span id="fullnameInfo"></span></td>
 						</tr>
 						<tr>
 							<td><label for="type" id="typeLabel">Type (number)</label></td>

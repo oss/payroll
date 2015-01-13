@@ -117,22 +117,13 @@
 							<td><span id="netidInfo"></span></td>
 						</tr>
 						<tr>
-							<td><label for="fullname" id="fullnameLabel">Fullname</label></td>
+							<td><label for="fullname" id="fullnameLabel">Full Name</label></td>
 						</tr>
 						<tr>
 							<td><input name="fullname" id="fullname" value="" type="text" /></td>
 						</tr>
 						<tr>
 							<td><span id="fullnameInfo"></span></td>
-						</tr>
-						<tr>
-							<td><label for="ssn" id="ssnLabel">SSN (###-##-####)</label></td>
-						</tr>
-						<tr>
-							<td><input name="ssn" id="ssn" value="" type="text" /></td>
-						</tr>
-						<tr>
-							<td><span id="ssnInfo"></span></td>
 						</tr>
 						<tr>
 							<td><label for="type" id="typeLabel">Type (number)</label></td>
@@ -171,12 +162,21 @@
 							<td><span id="acctInfo"></span></td>
 						</tr>
 						<tr>
-							<td><button type="submit" id="submit" style="display:none">Save >></button></td>
+							<td><label for="email" id="emailLabel">Email Address</label></td>
+						</tr>
+						<tr>
+							<td><input name="email" id="email" value="" type="text" /></td>
+						</tr>
+						<tr>
+							<td><span id="emailInfo"></span></td>
+						</tr>
+						<tr>
+							<td><button type="submit" id="submit" style="display:none;">Save >></button></td>
 						</tr>
 					</table>
 					<span id="loading"></span>
 					<input name="submitted" id="submitted" value="true" type="hidden" />
-				</form>			
+				</form>
 			</div>
 		</div>
 		<div id="footer">
