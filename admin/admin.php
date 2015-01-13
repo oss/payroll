@@ -383,6 +383,21 @@ echo "<input type='hidden' name='startdate' value=\"" . $startdate_in . "\" />";
 echo "<input id='print' type='submit' value=\"Print Checked\" class='button'\"/></form></div> \n";
 echo "</form><br>";
 
+// dynamically create a checkbox based on available users
+echo '<div class="adminCheckboxOuter">';
+echo "<form class=\"adminCheckboxInner\" method=\"post\" action=\"csv-timesheet.php\">";
+echo "<input type='checkbox' onClick='toggle(this, \"checkMeCsv\")'/>Check All<br/>";
+
+foreach($allUsers as $nextUser) {
+
+	if ($nextUser !== "")
+		echo '<input class="checkMeCsv" type="checkbox" name="'.$nextUser.'">'.$nextUser.'<br>';
+
+}
+echo "<input type='hidden' name='startdate' value=\"" . $startdate_in . "\" />";
+echo "<input id='print' type='submit' value=\"Make CSV\" class='button'\"/></form></div> \n";
+echo "</form><br>";
+
 // creates a checkbox listing employees that have not completed their vouchers. emails them
 // reminder upon clicking submit button
 echo '<div class="adminCheckboxOuter">';

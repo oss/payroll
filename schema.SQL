@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.1.46, for koji-linux-gnu (x86_64)
 --
--- Host: localhost    Database: payroll_test
+-- Host: localhost    Database: rupaid
 -- ------------------------------------------------------
 -- Server version	5.1.46
 
@@ -29,6 +29,7 @@ CREATE TABLE `empinfo` (
   `descduty` varchar(30) DEFAULT NULL,
   `payrate` float(4,2) DEFAULT NULL,
   `email` varchar(30) DEFAULT NULL,
+  `acctcode` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`username`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -61,4 +62,4 @@ CREATE TABLE `payrollinfo` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-23 17:40:34
+-- Dump completed on 2015-01-12 20:31:42

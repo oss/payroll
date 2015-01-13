@@ -1,0 +1,1 @@
+select * from empinfo, (select username.SUM(endtime-starttime) as tm from payrollinfo group by username) as q where empinfo.username = q.username and descduty='Work Study';

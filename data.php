@@ -17,6 +17,7 @@ Description:  This file makes establishes a connection to the mysql database
 	$type = $_POST['type'];
 	$title = $_POST['title'];
 	$wage = $_POST['wage'];
+	$acct = $_POST['acct'];
 	$email = $_POST['email'];
 
 	// establish a connection to the mysql database
@@ -27,7 +28,7 @@ Description:  This file makes establishes a connection to the mysql database
 				) or die( mysql_error() );
 	mysql_select_db($db_database) or die(mysql_error());
 
-	mysql_query("update empinfo set type='$type', descduty='$title', payrate='$wage', email='$email' where username='$netid'") or die(mysql_error());
+	mysql_query("update empinfo set type='$type', descduty='$title', payrate='$wage', acctcode='$acct', email='$email' where username='$netid'") or die(mysql_error());
 
 	mysql_close($connection);
 ?>

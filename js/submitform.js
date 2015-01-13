@@ -19,6 +19,10 @@ $(document).ready(function(){
 	var wageInfo = $("#wageInfo");
 	var wage = "";
 	
+	var acctInput = $("#acct");
+	var acctInfo = $("#acctInfo");
+	var acct = "";
+
 	$("#netid").blur(function()
 		{
 		netid = "";
@@ -165,6 +169,7 @@ $(document).ready(function(){
 		type = $("#type").val();
 		title = $("#title").val();
 		wage = $("#wage").val();
+		acct = $("#acct").val();
 		var error = false;				   				   	
 		if(netid == "")
 			{
@@ -211,12 +216,21 @@ $(document).ready(function(){
 			wageInfo.text("Type in a valid wage rate please.");
 			error = true;
 			}
+		if (acct == "")
+			{
+			acctInput.removeClass("success");
+			acctInfo.removeClass("successtext");
+			acctInput.addClass("error");
+			acctInfo.addClass("errortext");
+			acctInfo.text("Type in a valid acct number please.");
+			error = true;
+			}
 		if(error == false)
 			{
 			$(this).hide();
 			$("#loading").append('<img src="images/loading.gif" alt="Loading" id="loading" />');
 			
-			$.post("data.php", { netid: netid, type: type, title: title, wage: wage, email: email}, function(data, textStatus)
+			$.post("data.php", { netid: netid, type: type, title: title, wage: wage, acct: acct, email: email}, function(data, textStatus)
 				{
 				$("#sendEmail").slideUp("normal", function() {				   
 					$("#sendEmail").before('<h2>'+ textStatus +', refresh to edit again.</h2>');	

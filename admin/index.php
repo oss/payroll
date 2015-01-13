@@ -162,6 +162,15 @@
 							<td><span id="wageInfo"></span></td>
 						</tr>
 						<tr>
+							<td><label for="acct" id="acctLabel">Acct Number</label></td>
+						</tr>
+						<tr>
+							<td><input name="acct" id="acct" value="" type="text" /></td>
+						</tr>
+						<tr>
+							<td><span id="acctInfo"></span></td>
+						</tr>
+						<tr>
 							<td><button type="submit" id="submit" style="display:none">Save >></button></td>
 						</tr>
 					</table>
