@@ -14,11 +14,10 @@
   $startdate_SQL = date("Y-m-d", $startdate);
   $enddate_SQL = date("Y-m-d", $enddate);
 
+  // header("Content-type: text/plain");
   header("Content-type: application/CSV");
   header('Content-Disposition: attachment; filename=" ' . $enddate_SQL . '-hours.csv"');
 
-  // foreach($_POST as $
-  // $result = mysql_query($querytext,$db);
   foreach($_POST as $username=>$unused) {
     if($username == 'startdate')
       continue;
@@ -35,36 +34,46 @@
     while ($data = mysql_fetch_array ($result)) {
 
       $daystamp = strtotime($data['date'] . " 00:00:00");
-      if ($data['starttime'] == "00:00:00") $startstamp = 0;
-      else $startstamp = strtotime($data['date'] . " " . $data['starttime']);
+
+      if ($data['starttime'] == "00:00:00")
+        $startstamp = 0;
+      else
+        $startstamp = strtotime($data['date'] . " " . $data['starttime']);
+
       $endstamp = strtotime($data['date'] . " " . $data['endtime']);
-      if ($data['endtime'] == "00:00:00") $endstamp = 0;
-      else $starttimes[$daystamp] = $startstamp;
+
+      if ($data['endtime'] == "00:00:00")
+        $endstamp = 0;
+      else
+        $starttimes[$daystamp] = $startstamp;
+
       $endtimes[$daystamp] = $endstamp;
     }
 
-    for ($i=0; $i<7; $i++){
-      $breaktime = 0;
-      $datetemp = date("m/d/y", mktime($hour,$minute,$second,$month,$day+$i,$year));
-      $stemp = $starttimes[mktime(0,0,0,$month,$day+$i+7,$year)];
-      $stemp_s = date("h:i A", $stemp);
-      if ($stemp == 0)
-        continue;
-      $etemp = $endtimes[mktime(0,0,0,$month,$day+$i+7,$year)];
-      if ($etemp == 0)
-        continue;
-      $ttemp = ($etemp - $stemp) / 60 / 60;
-      $breaktime = (int)($ttemp / 5) * .5;
-      $etemp_s = date("h:i A", $etemp);
+    for ($weekoffset = 0; $weekoffset < 8; $weekoffset += 7) {
+      for ($i=0; $i<7; $i++){
+        $breaktime = 0;
+        $datetemp = date("m/d/y", mktime($hour,$minute,$second,$month,$day+$i,$year));
+        $stemp = $starttimes[mktime(0,0,0,$month,$day+$i+$weekoffset,$year)];
+        $stemp_s = date("h:i A", $stemp);
+        if ($stemp == 0)
+          continue;
+        $etemp = $endtimes[mktime(0,0,0,$month,$day+$i+$weekoffset,$year)];
+        if ($etemp == 0)
+          continue;
+        $ttemp = ($etemp - $stemp) / 60 / 60;
+        $breaktime = (int)($ttemp / 5) * .5;
+        $etemp_s = date("h:i A", $etemp);
 
-      echo(
-        $username . "," .
-        $datetemp . " " . $stemp_s . "," .
-        $datetemp . " " . $etemp_s . "," .
-        $breaktime . " hours," .
-        $acct . "," .
-        "\n"
-      );
+        echo(
+          $username . "," .
+          $datetemp . " " . $stemp_s . "," .
+          $datetemp . " " . $etemp_s . "," .
+          $breaktime . " hours," .
+          $acct . "," .
+          "\n"
+        );
+      }
     }
 
     unset($endtimes);
