@@ -44,6 +44,7 @@
     }
 
     for ($i=0; $i<7; $i++){
+      $breaktime = 0;
       $datetemp = date("m/d/y", mktime($hour,$minute,$second,$month,$day+$i,$year));
       $stemp = $starttimes[mktime(0,0,0,$month,$day+$i+7,$year)];
       $stemp_s = date("h:i A", $stemp);
@@ -52,13 +53,15 @@
       $etemp = $endtimes[mktime(0,0,0,$month,$day+$i+7,$year)];
       if ($etemp == 0)
         continue;
+      $ttemp = ($etemp - $stemp) / 60 / 60;
+      $breaktime = (int)($ttemp / 5) * .5;
       $etemp_s = date("h:i A", $etemp);
 
       echo(
         $username . "," .
         $datetemp . " " . $stemp_s . "," .
         $datetemp . " " . $etemp_s . "," .
-        "0," .
+        $breaktime . " hours," .
         $acct . "," .
         "\n"
       );
