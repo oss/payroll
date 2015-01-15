@@ -53,7 +53,7 @@
     for ($weekoffset = 0; $weekoffset < 8; $weekoffset += 7) {
       for ($i=0; $i<7; $i++){
         $breaktime = 0;
-        $datetemp = date("m/d/y", mktime($hour,$minute,$second,$month,$day+$i,$year));
+        $datetemp = date("m/d/y", mktime($hour,$minute,$second,$month,$day+$i+$weekoffset,$year));
         $stemp = $starttimes[mktime(0,0,0,$month,$day+$i+$weekoffset,$year)];
         $stemp_s = date("h:i A", $stemp);
         if ($stemp == 0)
