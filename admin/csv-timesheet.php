@@ -69,7 +69,7 @@
           $username . "," .
           $datetemp . " " . $stemp_s . "," .
           $datetemp . " " . $etemp_s . "," .
-          $breaktime . " hours," .
+          $breaktime . "," .
           $acct . "," .
           "\n"
         );
