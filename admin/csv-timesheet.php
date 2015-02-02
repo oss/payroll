@@ -53,9 +53,9 @@
     for ($weekoffset = 0; $weekoffset < 8; $weekoffset += 7) {
       for ($i=0; $i<7; $i++){
         $breaktime = 0;
-        $datetemp = date("m/d/y", mktime($hour,$minute,$second,$month,$day+$i+$weekoffset,$year));
+        $datetemp = date("Y/m/d", mktime($hour,$minute,$second,$month,$day+$i+$weekoffset,$year));
         $stemp = $starttimes[mktime(0,0,0,$month,$day+$i+$weekoffset,$year)];
-        $stemp_s = date("h:i A", $stemp);
+        $stemp_s = date("H:i", $stemp);
         if ($stemp == 0)
           continue;
         $etemp = $endtimes[mktime(0,0,0,$month,$day+$i+$weekoffset,$year)];
@@ -63,7 +63,7 @@
           continue;
         $ttemp = ($etemp - $stemp) / 60 / 60;
         $breaktime = (int)($ttemp / 4) * 30;
-        $etemp_s = date("h:i A", $etemp);
+        $etemp_s = date("H:i", $etemp);
 
         echo(
           $username . "," .
