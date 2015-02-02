@@ -70,7 +70,11 @@
           $datetemp . " " . $stemp_s . "," .
           $datetemp . " " . $etemp_s . "," .
           $breaktime . "," .
-          $acct . "," .
+          // To be a valid CSV, the following line should end in a comma.
+          // However, the application that processes this is bad,
+          // so we need to need to leave it out.
+          // $acct . "," .
+          $acct .
           "\n"
         );
       }
