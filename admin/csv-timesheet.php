@@ -62,7 +62,9 @@
         if ($etemp == 0)
           continue;
         $ttemp = ($etemp - $stemp) / 60 / 60;
-        $breaktime = (int)($ttemp / 4) * 30;
+        $breaktime = 0;
+        if ($ttemp > 5)
+          $breaktime = 30;
         $etemp_s = date("H:i", $etemp);
 
         echo(
